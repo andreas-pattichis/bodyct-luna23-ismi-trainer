@@ -55,6 +55,6 @@ The dataset originates from the Lung Nodule Analysis 2023 - ISMI educational cha
 - **`networks.py`**: Python script defining network architectures.
 - **`README.md`**: This readme file.
 - **`requirements.txt`**: File containing the list of dependencies required to run the code.
-- 
+ 
 
 For more detailed explanations of the study and results, please refer to the project report.
