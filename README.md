@@ -14,6 +14,18 @@
 
 This project aimed to improve the LUNA23 baseline results for lung nodule analysis using advanced models. 
 
+## Dataset Description
+
+The dataset originates from the Lung Nodule Analysis 2023 - ISMI educational challenge, evaluating algorithms for lung nodule analysis using chest CT images. It includes:
+- Training Set: 687 lung nodule images with pixel-level labels for segmentation and CSV file with labels for nodule type and malignancy.
+- Testing Set: 256 lung nodule images without labels, used for final evaluation.
+
+### Key Attributes:
+- Volume of interest (VOI): 128 x 128 x 64 voxels.
+- Nodule types: non-solid, part-solid, solid, and calcified (classes 0, 1, 2, and 3).
+- Malignancy risk: binary labels (0 for non-malignant, 1 for malignant).
+- Binary voxel-level labels: class 0 for background, class 1 for nodule. 
+
 ## Repository Structure
 
 ### 1. Addressing Class Imbalance
@@ -43,17 +55,6 @@ This project aimed to improve the LUNA23 baseline results for lung nodule analys
 - **`networks.py`**: Python script defining network architectures.
 - **`README.md`**: This readme file.
 - **`requirements.txt`**: File containing the list of dependencies required to run the code.
-
-## Dataset Description
-
-The dataset originates from the Lung Nodule Analysis 2023 - ISMI educational challenge, evaluating algorithms for lung nodule analysis using chest CT images. It includes:
-- Training Set: 687 lung nodule images with pixel-level labels for segmentation and CSV file with labels for nodule type and malignancy.
-- Testing Set: 256 lung nodule images without labels, used for final evaluation.
-
-### Key Attributes:
-- Volume of interest (VOI): 128 x 128 x 64 voxels.
-- Nodule types: non-solid, part-solid, solid, and calcified (classes 0, 1, 2, and 3).
-- Malignancy risk: binary labels (0 for non-malignant, 1 for malignant).
-- Binary voxel-level labels: class 0 for background, class 1 for nodule. 
+- 
 
 For more detailed explanations of the study and results, please refer to the project report.
