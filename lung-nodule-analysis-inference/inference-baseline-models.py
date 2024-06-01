@@ -1,3 +1,4 @@
+# Import the necessary libraries
 import torch
 import networks
 import dataloader
@@ -10,9 +11,10 @@ from pathlib import Path
 from tqdm import tqdm
 
 
+# Function to keep only the central connected component in a patch
 def keep_central_connected_component(
-    prediction: sitk.Image,
-    patch_size: Tuple = (128, 128, 64),
+        prediction: sitk.Image,
+        patch_size: Tuple = (128, 128, 64),
 ) -> sitk.Image:
     """Function to post-process the prediction to keep only the central connected component in a patch
 
@@ -51,14 +53,14 @@ def keep_central_connected_component(
     return prediction
 
 
+# Function to perform inference on the test set
 def perform_inference_on_test_set(workspace: Path):
-
-    #load the three model architectures
+    # load the three model architectures
     segmentation_model = networks.UNet(1, 64).cuda()
     malignancy_model = networks.CNN3D(1, 1, task="malignancy").cuda()
     noduletype_model = networks.CNN3D(1, 4, task="noduletype").cuda()
 
-    #set the architectures in evaluation mode
+    # set the architectures in evaluation mode
     segmentation_model.eval()
     malignancy_model.eval()
     noduletype_model.eval()
@@ -77,7 +79,7 @@ def perform_inference_on_test_set(workspace: Path):
     ckpt = torch.load(workspace / "results/20240525_0_noduletype_BALANCED_DATASET/fold0/best_model.pth")
     noduletype_model.load_state_dict(ckpt)
 
-    #define the paths where the test set is stored and where the predictions should be stored
+    # define the paths where the test set is stored and where the predictions should be stored
     test_set_path = Path(workspace / "data" / "test_set" / "images")
     save_path = workspace / "results" / "test_set_predictions"
 
@@ -90,7 +92,7 @@ def perform_inference_on_test_set(workspace: Path):
 
     predictions = []
 
-    #iterate over all test images
+    # iterate over all test images
     for idx, image_path in enumerate(tqdm(list(test_set_path.glob("*.mha")))):
 
         # load and pre-process input image
@@ -168,15 +170,14 @@ def perform_inference_on_test_set(workspace: Path):
 
         # crop, if necessary
         if diff.min() < 0:
-
             shape = np.array(segmentation.shape)
             center = shape // 2
 
             segmentation = segmentation[
-                center[0] - patch_size[0] // 2 : center[0] + patch_size[0] // 2,
-                center[1] - patch_size[1] // 2 : center[1] + patch_size[1] // 2,
-                center[2] - patch_size[2] // 2 : center[2] + patch_size[2] // 2,
-            ]
+                           center[0] - patch_size[0] // 2: center[0] + patch_size[0] // 2,
+                           center[1] - patch_size[1] // 2: center[1] + patch_size[1] // 2,
+                           center[2] - patch_size[2] // 2: center[2] + patch_size[2] // 2,
+                           ]
 
         # apply threshold
         segmentation = (segmentation > 0.5).astype(np.uint8)
@@ -214,8 +215,9 @@ def perform_inference_on_test_set(workspace: Path):
     predictions.to_csv(save_path / "predictions.csv", index=False)
 
 
+# Main function to perform inference on the test set
 if __name__ == "__main__":
-    #workspace path in our Snellius server
+    # workspace path in our Snellius server
     workspace = Path("/gpfs/scratch1/nodespecific/int5/calberto")
 
     perform_inference_on_test_set(workspace=workspace)
