@@ -35,7 +35,7 @@ The dataset originates from the Lung Nodule Analysis 2023 - ISMI educational cha
 - **`EDA.ipynb`**: Jupyter notebook for Exploratory Data Analysis (EDA) on the dataset. Provides insights into data distribution, class imbalances, and key statistics.
 
 ### 3. Lung Nodule Analysis Inference
-- **`inference-baseline-models.py`**: Python script to perform inference using baseline models.
+- **`inference-baseline-models.py`**: Python script to perform inference using the variations created of the baseline models.
 - **`Inference-with-nnUNet.ipynb`**: Jupyter notebook to perform inference using nnU-Net model.
 
 ### 4. Training Results Analysis
