@@ -54,7 +54,6 @@ The dataset originates from the Lung Nodule Analysis 2023 - ISMI educational cha
 - Volume of interest (VOI): 128 x 128 x 64 voxels.
 - Nodule types: non-solid, part-solid, solid, and calcified (classes 0, 1, 2, and 3).
 - Malignancy risk: binary labels (0 for non-malignant, 1 for malignant).
-- Binary voxel-level labels: class 0 for background, class 1 for nodule.
-- 
+- Binary voxel-level labels: class 0 for background, class 1 for nodule. 
 
 For more detailed explanations of the study and results, please refer to the project report.
