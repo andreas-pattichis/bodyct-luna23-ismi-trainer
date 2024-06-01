@@ -51,7 +51,7 @@ The dataset originates from the Lung Nodule Analysis 2023 - ISMI educational cha
 
 ### 6. Other Scripts and Files
 - **`dataloader.py`**: Python script for data loading and preprocessing.
-- **`inference.py`**: Python script for performing inference on test set.
+- **`inference.py`**: Python script template for performing inference on test set.
 - **`networks.py`**: Python script defining network architectures.
 - **`README.md`**: This readme file.
 - **`requirements.txt`**: File containing the list of dependencies required to run the code.
